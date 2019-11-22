@@ -1,0 +1,307 @@
+<div class="hg-app-container-body">
+  <header class="hg-component-hf hg-component-header" *ngIf="ui.showCH" [ngStyle]="{ top: !app.header ? 0 : null }">
+    <!-- remove the above ngStyle if app header is always present -->
+    <div class="hg-component-hf-details">
+      <div class="hg-component-hf-items-left">
+        <div>
+          view2 header:
+        </div>
+      </div>
+      <!-- obviously replace these with nicer presentation ul/li navbar etc -->
+      <div class="hg-component-hf-items-right">
+        <!-- obviously replace these with nicer presentation ul/li navbar etc -->
+        <!-- using order to display backwards -->
+        <div style="order:4">
+          <a class="nav-link" [routerLink]="['/view1']">View 1<span class="sr-only"></span></a>
+        </div>
+        <div style="order:3">
+          <button (click)="implementMe('View2Action1')">
+            <!-- hidden on xs-->
+            <span class="d-none d-sm-block">View2Action1</span>
+            <!-- show on xs-->
+            <span class="d-sm-none">V2A1</span>
+          </button>
+        </div>
+        <div style="order:2">
+          <button (click)="implementMe('View2Action2')">
+            <!-- hidden on xs-->
+            <span class="d-none d-sm-block">View2Action2</span>
+            <!-- show on xs-->
+            <span class="d-sm-none">V2A2</span>
+          </button>
+        </div>
+        <div style="order:1">
+          <button (click)="implementMe('View2Action3')">
+            <!-- hidden on xs-->
+            <span class="d-none d-sm-block">View2Action3</span>
+            <!-- show on xs-->
+            <span class="d-sm-none">V2A3</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="hgCB hg-component-body">
+    <div class="hg-content">
+      <div style="color:black">
+        Show for App:<br />
+        &nbsp; Header
+        <input type="checkbox" [checked]="app.header" [(ngModel)]="app.header" (click)="setValues()" />
+        &nbsp; Footer
+        <input type="checkbox" [checked]="app.footer" [(ngModel)]="app.footer" (click)="setValues()" />
+
+        &nbsp; Show All
+        <input type="checkbox" [checked]="app.showAll" [(ngModel)]="app.showAll" (click)="showAll(true)" />
+        &nbsp; Hide All
+        <input type="checkbox" [checked]="app.hideAll" [(ngModel)]="app.hideAll" (click)="showAll(false)" />
+      </div>
+      <div style="color:black">
+        Show for component:<br />
+        &nbsp; Header
+        <input type="checkbox" [checked]="ui.showCH" [(ngModel)]="ui.showCH" (click)="setValues()" />
+        &nbsp; Footer
+        <input type="checkbox" [checked]="ui.showCF" [(ngModel)]="ui.showCF" (click)="setValues()" />
+        &nbsp;1st Aside
+        <input type="checkbox" [checked]="ui.showLeft" [(ngModel)]="ui.showLeft" (click)="setValues()" />
+        &nbsp;2nd Aside
+        <input type="checkbox" [checked]="ui.showRight" [(ngModel)]="ui.showRight" (click)="setValues()" />
+      </div>
+      <h3>
+        VIEW 2 Lorem Ipsum
+      </h3>
+      <div *ngIf="!(ui.header || ui.footer || ui.showCH || ui.showCF)" style="background-color: yellow; color: black">
+        All headers/footers hidden
+        <a class="nav-link" [routerLink]="['/view1']">
+          => View 1<span class="sr-only"></span></a><br />
+      </div>
+      <div id="lipsum">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+          vestibulum posuere pellentesque. Integer ut orci ac massa commodo
+          dictum. Suspendisse ut orci vitae massa maximus congue sed ac velit.
+          Vivamus vestibulum eros sed dictum suscipit. Proin a semper risus, non
+          aliquam nunc. Sed rutrum laoreet vulputate. Sed pellentesque odio
+          molestie libero pulvinar molestie. Suspendisse quis tincidunt augue.
+          Sed ut ex imperdiet, venenatis augue sed, interdum tellus. Vivamus
+          laoreet sit amet odio quis tempor. Suspendisse nec dui vel lectus
+          sodales pulvinar a id libero.
+        </p>
+        <p>
+          Quisque nec lorem eget justo bibendum dignissim in et est. Praesent
+          suscipit interdum erat et porta. Curabitur efficitur nisi a blandit
+          varius. Cras elementum odio non tellus elementum aliquam. Donec ac
+          dignissim justo. Sed lorem erat, sodales sit amet feugiat quis,
+          sodales eu est. Donec posuere convallis quam, nec tincidunt quam
+          molestie nec. Sed aliquam tellus a tincidunt dapibus. Etiam ac ligula
+          nisl. Nulla malesuada viverra lorem non imperdiet. Ut eros nibh,
+          eleifend sed arcu et, molestie dignissim metus. Sed fermentum rhoncus
+          odio, sed posuere elit. Lorem ipsum dolor sit amet, consectetur
+          adipiscing elit. Integer eget euismod leo. Donec placerat ornare
+          commodo. Nunc tellus neque, tristique vel suscipit ut, accumsan eget
+          tortor.
+        </p>
+        <p>
+          Curabitur eget velit nisl. Sed non iaculis augue. Donec lobortis urna
+          eget sem tempus accumsan. Pellentesque euismod erat sit amet faucibus
+          tristique. Nam tincidunt velit non sagittis vulputate. Ut id porttitor
+          dolor, at posuere lacus. Sed id pretium orci. Aliquam pretium aliquet
+          egestas. Nam sit amet lectus et est interdum condimentum. Aliquam erat
+          ligula, malesuada nec dolor ut, porta sollicitudin velit. Morbi tortor
+          purus, lacinia sed mi non, auctor tristique lorem. Integer vitae
+          volutpat velit. Mauris vulputate quis massa quis molestie. Ut at porta
+          ligula. Vestibulum luctus magna vitae sollicitudin imperdiet.
+        </p>
+        <p>
+          Duis eget sagittis ex. Vestibulum imperdiet id sem eu finibus. Quisque
+          tristique et mauris in tempor. Vivamus egestas nec dui nec tempor. Sed
+          vestibulum iaculis turpis, vestibulum auctor purus dictum vel.
+          Phasellus sodales feugiat lorem eu semper. Suspendisse sit amet
+          aliquam dui. Nam id eros diam. Vivamus a dui a sem cursus tristique.
+          Phasellus vel lorem vulputate, placerat lectus vel, vulputate mi. Sed
+          laoreet dolor ac feugiat tempor. Pellentesque id justo mi. Phasellus
+          eu risus nec tellus tincidunt interdum eu ac nisi. Vivamus pulvinar
+          sem id varius vulputate.
+        </p>
+        <p>
+          Fusce vitae vulputate libero, et suscipit lacus. Sed ut accumsan
+          justo. Proin nibh odio, fringilla eget ullamcorper nec, ornare id
+          augue. Duis viverra lacus et odio pharetra tempus. Nam hendrerit est
+          orci, sit amet volutpat orci pellentesque sit amet. Aliquam ut felis
+          sed magna ornare imperdiet ac nec ipsum. Mauris aliquam enim a nunc
+          scelerisque eleifend. Duis quis dictum augue. Nulla dignissim arcu at
+          elit maximus, et faucibus ligula tempor. Vivamus pretium, nibh id
+          condimentum volutpat, massa felis elementum ante, in convallis eros
+          metus in ante. Integer a odio est. Cras imperdiet maximus dictum.
+        </p>
+
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+          vestibulum posuere pellentesque. Integer ut orci ac massa commodo
+          dictum. Suspendisse ut orci vitae massa maximus congue sed ac velit.
+          Vivamus vestibulum eros sed dictum suscipit. Proin a semper risus, non
+          aliquam nunc. Sed rutrum laoreet vulputate. Sed pellentesque odio
+          molestie libero pulvinar molestie. Suspendisse quis tincidunt augue.
+          Sed ut ex imperdiet, venenatis augue sed, interdum tellus. Vivamus
+          laoreet sit amet odio quis tempor. Suspendisse nec dui vel lectus
+          sodales pulvinar a id libero.
+        </p>
+        <p>
+          Quisque nec lorem eget justo bibendum dignissim in et est. Praesent
+          suscipit interdum erat et porta. Curabitur efficitur nisi a blandit
+          varius. Cras elementum odio non tellus elementum aliquam. Donec ac
+          dignissim justo. Sed lorem erat, sodales sit amet feugiat quis,
+          sodales eu est. Donec posuere convallis quam, nec tincidunt quam
+          molestie nec. Sed aliquam tellus a tincidunt dapibus. Etiam ac ligula
+          nisl. Nulla malesuada viverra lorem non imperdiet. Ut eros nibh,
+          eleifend sed arcu et, molestie dignissim metus. Sed fermentum rhoncus
+          odio, sed posuere elit. Lorem ipsum dolor sit amet, consectetur
+          adipiscing elit. Integer eget euismod leo. Donec placerat ornare
+          commodo. Nunc tellus neque, tristique vel suscipit ut, accumsan eget
+          tortor.
+        </p>
+        <p>
+          Curabitur eget velit nisl. Sed non iaculis augue. Donec lobortis urna
+          eget sem tempus accumsan. Pellentesque euismod erat sit amet faucibus
+          tristique. Nam tincidunt velit non sagittis vulputate. Ut id porttitor
+          dolor, at posuere lacus. Sed id pretium orci. Aliquam pretium aliquet
+          egestas. Nam sit amet lectus et est interdum condimentum. Aliquam erat
+          ligula, malesuada nec dolor ut, porta sollicitudin velit. Morbi tortor
+          purus, lacinia sed mi non, auctor tristique lorem. Integer vitae
+          volutpat velit. Mauris vulputate quis massa quis molestie. Ut at porta
+          ligula. Vestibulum luctus magna vitae sollicitudin imperdiet.
+        </p>
+        <p>
+          Duis eget sagittis ex. Vestibulum imperdiet id sem eu finibus. Quisque
+          tristique et mauris in tempor. Vivamus egestas nec dui nec tempor. Sed
+          vestibulum iaculis turpis, vestibulum auctor purus dictum vel.
+          Phasellus sodales feugiat lorem eu semper. Suspendisse sit amet
+          aliquam dui. Nam id eros diam. Vivamus a dui a sem cursus tristique.
+          Phasellus vel lorem vulputate, placerat lectus vel, vulputate mi. Sed
+          laoreet dolor ac feugiat tempor. Pellentesque id justo mi. Phasellus
+          eu risus nec tellus tincidunt interdum eu ac nisi. Vivamus pulvinar
+          sem id varius vulputate.
+        </p>
+        <p>
+          Fusce vitae vulputate libero, et suscipit lacus. Sed ut accumsan
+          justo. Proin nibh odio, fringilla eget ullamcorper nec, ornare id
+          augue. Duis viverra lacus et odio pharetra tempus. Nam hendrerit est
+          orci, sit amet volutpat orci pellentesque sit amet. Aliquam ut felis
+          sed magna ornare imperdiet ac nec ipsum. Mauris aliquam enim a nunc
+          scelerisque eleifend. Duis quis dictum augue. Nulla dignissim arcu at
+          elit maximus, et faucibus ligula tempor. Vivamus pretium, nibh id
+          condimentum volutpat, massa felis elementum ante, in convallis eros
+          metus in ante. Integer a odio est. Cras imperdiet maximus dictum.
+        </p>
+        LAST LINE
+      </div>
+    </div>
+
+    <!--
+    <div [ngSwitch]="ui.showCH" class="flexPlaceboXS flexOrder d-block d-sm-none">
+      < !-- xs devices force the correct(ish) displacment at the top when in flex column mode due to 2* headers on/off-- >
+      <div *ngSwitchCase="true" class="d-block  d-sm-none" style="height:30px">
+        &nbsp;
+      </div>
+      <div *ngSwitchCase="false" class="d-none d-sm-block" style="height:8px">
+        &nbsp;
+      </div>
+    </div>
+-->
+
+    <div class="hg-sidebar-1 hg-sidebar" *ngIf="ui.showLeft">
+      <div class="hgSideBarItemsSticky">
+        <div>Gamma</div>
+
+        <div>
+          <a class="nav-link" [routerLink]="['/view1']">View 1<span class="sr-only"></span></a>
+        </div>
+
+        <div>
+          <button (click)="implementMe('2.1.1')">
+            <!-- hidden on xs-->
+            <span class="d-none d-sm-block">Action 2.1.1</span>
+            <!-- show on xs-->
+            <span class="d-sm-none">A 2.1.1 </span>
+          </button>
+        </div>
+
+        <div>
+          <button (click)="implementMe('2.1.2')">
+            <!-- hidden on xs-->
+            <span class="d-none d-sm-block">Action 2.1.2</span>
+            <!-- show on xs-->
+            <span class="d-sm-none">A 2.1.2 </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="hg-sidebar-2 hg-sidebar" *ngIf="ui.showRight">
+      <div class="hgSideBarItemsSticky">
+        <div>Delta</div>
+        <div>
+          <a class="nav-link" [routerLink]="['/view1']">View 1<span class="sr-only"></span></a>
+        </div>
+        <div>
+          <button (click)="implementMe('2.2.1')">
+            <!-- hidden on xs-->
+            <span class="d-none d-sm-block">Action 2.2.1</span>
+            <!-- show on xs-->
+            <span class="d-sm-none">A 2.2.1 </span>
+          </button>
+        </div>
+        <div>
+          <button (click)="implementMe('2.2.2')">
+            <!-- hidden on xs-->
+            <span class="d-none d-sm-block">Action 2.2.2</span>
+            <!-- show on xs-->
+            <span class="d-sm-none">A 2.2.2 </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="hg-component-hf hg-component-footer" *ngIf="ui.showCF" [ngStyle]="{ bottom: !app.footer ? 0 : null }">
+    <!-- remove the above ngStyle if app footer is always present -->
+    <div class="hg-component-hf-details">
+      <div class="hg-component-hf-items-left">
+        <div>
+          view2 footer:
+        </div>
+      </div>
+      <!-- obviously replace these with nicer presentation ul/li navbar etc -->
+      <div class="hg-component-hf-items-right">
+        <!-- obviously replace these with nicer presentation ul/li navbar etc -->
+        <!-- using order to display backwards -->
+        <div style="order:4">
+          <a class="nav-link" [routerLink]="['/view1']">View 1<span class="sr-only"></span></a>
+        </div>
+        <div style="order:3">
+          <button (click)="implementMe('View2Action1')">
+            <!-- hidden on xs-->
+            <span class="d-none d-sm-block">View2Action1</span>
+            <!-- show on xs-->
+            <span class="d-sm-none">V2A1</span>
+          </button>
+        </div>
+        <div style="order:2">
+          <button (click)="implementMe('View2Action2')">
+            <!-- hidden on xs-->
+            <span class="d-none d-sm-block">View2Action2</span>
+            <!-- show on xs-->
+            <span class="d-sm-none">V2A2</span>
+          </button>
+        </div>
+        <div style="order:1">
+          <button (click)="implementMe('View2Action3')">
+            <!-- hidden on xs-->
+            <span class="d-none d-sm-block">View2Action3</span>
+            <!-- show on xs-->
+            <span class="d-sm-none">V2A3</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
