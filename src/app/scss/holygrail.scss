@@ -1,19 +1,25 @@
 /* unless overruled by a media breakpoint, the global settings are xs by default */
 
-@import '../node_modules/bootstrap/scss/bootstrap-reboot';
-@import '../node_modules/bootstrap/scss/bootstrap-grid';
-@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+/* in styles.css
+// @import '../node_modules/bootstrap/scss/bootstrap-reboot';
+// @import '../node_modules/bootstrap/scss/bootstrap-grid';
+// @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+*/
 
+/* obviously think about your colour schmeme / theme and contrasts for active, hover, disabled etc.
+*/
 $hg-app-hf-height: 40px; /* or .navbar */
 $hg-app-container-bkColor: red;
-$hg-app-hf-bkColor: rgb(245, 216, 51);
+$hg-app-hf-bkColor: red; // rgb(245, 216, 51);
 $hg-component-hf-bkColor: lightgreen;
 $hg-component-body-bkColor: rgb(139, 187, 233);
-$hg-component-body-color: white;
+$hg-component-body-color: black;
 $hg-sidebar-bkColor: rgb(238, 241, 19);
 $hg-sidebar-color: black;
 $hg-sidebar-items-bkColor: magenta;
 $hg-hf-border-radius: 12px;
+
+$hg-navbar-collapsed-show-bkColor: white;
 
 /* temps ? */
 
@@ -21,6 +27,7 @@ $hg-app-hf-left-bkColor: rgb(235, 218, 122);
 $hg-app-hf-right-bkColor: rgb(206, 190, 98);
 $hg-component-body-right-bkColor: rgb(139, 187, 233);
 $hg-component-hf-items-right-bkColor: rgb(175, 245, 161);
+
 
 html {
   overflow-y: scroll;
@@ -37,6 +44,19 @@ html {
   */
 }
 
+.navbar-brand {
+
+   padding-top: 0;
+   padding-bottom: 0;
+
+  /*font-size: 1.25rem; */
+
+}
+
+ul .navbar {
+  background-color: red;
+}
+
 .navbar button {
   /* => .btn-sm */
   padding: 0.25rem 0.5rem;
@@ -49,6 +69,49 @@ html {
   min-width: 0;
 }
 
+
+
+.navbar-collapse > ul {
+  margin-left: 1vw;
+}
+
+.navbar-collapse.show { 
+  /* on smaller devices do you want to show a different background colour when menu displayed
+ however some render flicker for colour change may be better to leave in original colour style of larger device  */
+  background-color: $hg-navbar-collapsed-show-bkColor; 
+}
+
+/*
+an attempt to see if the render flicker could be minimised
+.navbar-collapse.show > li {   
+  background-color: $hg-navbar-collapsed-show-bkColor; 
+}
+*/
+ li.nav-item:hover    {
+  background-color: #d0deec;
+  color: white;
+  border-radius: 8px;
+}
+
+li.nav-item:hover  > a.active   {
+  background-color: #e4f1b5; 
+}
+
+
+li.nav-item:hover  a  {
+  color: white;
+}
+
+li.nav-item > a.active   {
+  background-color: rgb(161, 240, 161);
+  color: white;
+  border-radius: 8px;
+}
+
+li.nav-item > a.active:hover   {
+  color: black;
+}
+
 button {
   border-radius: 8px;
 }
@@ -58,8 +121,18 @@ button:hover {
   color: black;
 }
 
+.hgSideBarItemsSticky button.disabled {
+  background-color: grey;
+  color: black;
+}
+
 .appBrandName {
   margin-right: 30px;
+}
+
+.hg-logo {
+  height: $hg-app-hf-height;
+  border-radius: 8px;
 }
 
 .hg-app-hf {
@@ -70,12 +143,18 @@ button:hover {
   /*  position: fixed; /* top / bottom set by hg-app-(header | footer) */
   position: sticky;
   width: 100%;
-  font-size: 14px;
+  /* font-size: 14px; */
   background-color: $hg-app-hf-bkColor;
   border-radius: $hg-hf-border-radius;
   height: $hg-app-hf-height;
   max-height: $hg-app-hf-height;
 }
+
+/* ensure dropdown defaults to parent colour within hg-app-hf  */
+.hg-app-hf    .dropdown-menu.show.showing {
+  background-color: $hg-app-hf-bkColor;
+}
+
 
 .hg-app-header {
   top: 0;
@@ -163,6 +242,11 @@ button:hover {
   max-height: $hg-app-hf-height;
 }
 
+/* ensure dropdown defaults to parent colour within hg-component-hf */
+.hg-component-hf    .dropdown-menu.show.showing {
+  background-color: $hg-component-hf-bkColor;
+}
+
 .hg-component-header {
   top: $hg-app-hf-height; /* height of the app-header above the component header, need to keep on the view */
 }
@@ -222,6 +306,22 @@ button:hover {
   border-radius: 12px; /* remove to prevent parent color near top left/right appearing */
 }
 
+.hg-sidebar button {
+ /*  background-color: #80c1cb; */ /* enable if not using app specific classes/style */
+  border-color: #80c1cb;
+  color: #fff;
+}
+
+.hg-sidebar button:disabled  {
+  background-color: grey;
+  color: #fff;
+}
+
+.hg-sidebar button .btn.btn-primary.disabled {
+  background-color: grey;
+  color: black;
+}
+
 .hgSideBarItemsSticky {
   z-index: 3; /* need to ensure drop down appears over footers in worst case display presentation */
   background-color: $hg-sidebar-items-bkColor;
@@ -231,6 +331,15 @@ button:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.hgSideBarItemsStickyDropDown.showing {
+  background-color: $hg-sidebar-items-bkColor;
+}
+
+/* ensure dropdown defaults to parent colour within  hgSideBarItemsSticky*/
+.hgSideBarItemsSticky   .dropdown-menu.show.showing {
+    background-color: $hg-sidebar-items-bkColor;
 }
 
 /*
@@ -334,7 +443,7 @@ button:hover {
 
   .hg-app-hf-details {
     padding-left: 20px;
-   /* align-items: center; */
+ 
   }
 
   .hg-app-container-body {
@@ -369,6 +478,12 @@ button:hover {
     max-height: $hg-app-hf-height;
   }
 
+  .hg-viewName {
+    color: black;
+    font-weight: 900;
+    font-size: 1.5em;
+  }
+
   .hg-component-hf-details {
     flex: 1;
   }
@@ -401,7 +516,7 @@ button:hover {
    Visual adusting with trial and error was used to set the - ??px value below
 
    */
-    /* min-height: 100vh; */
+      min-height: 100vh;
 
     /* nb this ??px value may be view specific to header/footer setup etc */
     display: -webkit-box;
@@ -416,8 +531,14 @@ button:hover {
   }
 
   .hg-sidebar button {
-    margin-top: 8px; /* vertical placement - typcially */
+    margin-top: 8px; /* vertical placement - typcially at this breakpoint*/
+    width: 90%;
   }
+
+  .hg-sidebar  button.btn:hover {
+    background-color: #0ff!important;
+    color: black;
+}
 
   .hg-sidebar div {
     flex: 1;
@@ -508,6 +629,10 @@ using the flex property to apportion weights*/
   }
 } /* min-width: 2560px */
 
+
+
+.flex { display: flex; flex-wrap: wrap; }
+
 .flexMin {
   flex: 0 1 auto;
 }
@@ -515,6 +640,14 @@ using the flex property to apportion weights*/
 .flexMax {
   flex: 1 1 auto;
 }
+
+.flex1 { flex:1; }
+.flex2 { flex:2; }
+.flex3 { flex:3; }
+.flex4 { flex:4; }
+.flex5 { flex:5; }
+.flex6 { flex:6; }
+
 .flexRow {
   display: flex;
   flex-direction: row-row;
@@ -548,3 +681,5 @@ using the flex property to apportion weights*/
   align-items: flex-end;
   padding-right: 6px;
 }
+
+
