@@ -1,0 +1,243 @@
+<div class="hg-app-container-body">
+  <header class="hg-component-hf hg-component-header" *ngIf="ui.showCH" [ngStyle]="{ top: !app.header ? 0 : null }">
+    <!-- remove the above ngStyle if app header is always present -->
+    <div class="hg-component-hf-details">
+      <div class="hg-component-hf-items-left">
+        <div>
+          view1 header:
+        </div>
+      </div>
+      <!-- obviously replace these with nicer presentation ul/li navbar etc -->
+      <div class="hg-component-hf-items-right">
+        <!-- obviously replace these with nicer presentation ul/li navbar etc -->
+        <!-- using order to display backwards -->
+        <div style="order:4">
+          <a class="nav-link" [routerLink]="['/view2']">View 2<span class="sr-only"></span></a>
+        </div>
+        <div style="order:3">
+          <button (click)="implementMe('View1Action1')">
+            <!-- hidden on xs-->
+            <span class="d-none d-sm-block">View1Action1</span>
+            <!-- show on xs-->
+            <span class="d-sm-none">V1A1</span>
+          </button>
+        </div>
+        <div style="order:2">
+          <button (click)="implementMe('View1Action2')">
+            <!-- hidden on xs-->
+            <span class="d-none d-sm-block">View1Action2</span>
+            <!-- show on xs-->
+            <span class="d-sm-none">V1A2</span>
+          </button>
+        </div>
+
+        <div>
+          <ul style="order:3" class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownD" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Action D
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownD">
+                <a class="dropdown-item" href="#" (click)="implementMe('Action D.1')">Action D.1</a>
+                <a class="dropdown-item" href="#" (click)="implementMe('Action D.2')">Action D.2</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" (click)="implementMe('Action D.3')">Action D.3</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <div class="hgCB hg-component-body">
+    <div class="hg-content">
+      <div style="color:black">
+        Show for App:<br />
+        &nbsp; Header
+        <input type="checkbox" [checked]="app.header" [(ngModel)]="app.header" (click)="setValues()" />
+        &nbsp; Footer
+        <input type="checkbox" [checked]="app.footer" [(ngModel)]="app.footer" (click)="setValues()" />
+
+        &nbsp; Show All
+        <input type="checkbox" [checked]="app.showAll" [(ngModel)]="app.showAll" (click)="showAll(true)" />
+        &nbsp; Hide All
+        <input type="checkbox" [checked]="app.hideAll" [(ngModel)]="app.hideAll" (click)="showAll(false)" />
+      </div>
+
+      <div style="color:black">
+        Show for component:<br />
+        &nbsp; Header
+        <input type="checkbox" [checked]="ui.showCH" [(ngModel)]="ui.showCH" (click)="setValues()" />
+        &nbsp; Footer
+        <input type="checkbox" [checked]="ui.showCF" [(ngModel)]="ui.showCF" (click)="setValues()" />
+        &nbsp;1st Aside
+        <input type="checkbox" [checked]="ui.showLeft" [(ngModel)]="ui.showLeft" (click)="setValues()" />
+        &nbsp;2nd Aside
+        <input type="checkbox" [checked]="ui.showRight" [(ngModel)]="ui.showRight" (click)="setValues()" />
+      </div>
+
+      <h3>
+        VIEW 1 Holy Grail Layout
+      </h3>
+
+      <div *ngIf="!(ui.header || ui.footer || ui.showCH || ui.showCF)" style="background-color: yellow; color: black">
+        All headers/footers hidden
+        <a class="nav-link" [routerLink]="['/view2']">
+          => View 2<span class="sr-only"></span></a><br />
+      </div>
+
+      A Holy Grail effort on steroids, the holy grail refers to a web page layout which has multiple, equal
+      height columns that are defined with style sheets. It is commonly desired
+      and implemented, although the ways in which it has tended to be
+      implemented all have drawbacks. Consequently, finding an optimal
+      implementation has been compared to searching for the elusive Holy Grail.
+      <p></p>
+      The approach here is to try and produce a responsive application for
+      mobile to desktop using flex and bootstrap 4. The primary intended target
+      device is desktop-level, with the bonus of availability on a small device
+      (&lt;768px)
+      <p></p>
+      There is a global application header and footer with a component level
+      main body. A dynamic [ngStyle] is used to adjust top/bottom if these are
+      not displayed.
+      <p></p>
+      The component level which fills the main body is essentially the holy
+      grail, 3 columns of equal height. Each component has its own header and 3
+      equal length columns: a left side, main central content body for the
+      component and a right side.
+      <p></p>
+      The header and asides are intended to hold functional
+      navigation/action/features relative to the component view.
+      <p></p>
+      A lot of the heavy lifting is done here, further styling is left as an
+      exercise for the reader/user to adjust position of relevant header/footer
+      items. Delete unneeded elements and becareful of z-index values for overlapping areas with dropdown features on
+      smaller displays.
+      <p></p>
+      Lots of colour used to show the various areas of the layout. Elements can
+      be now added or removed to adjust the layout to a practial need.
+    </div>
+    <!--
+    <div [ngSwitch]="showCH" class="flexPlaceboXS flexOrder d-block d-sm-none">
+      < !-- xs devices force the correct(ish) displacment at the top when in flex column mode due to 2* headers on/off-- >
+      <div *ngSwitchCase="true" class="d-block  d-sm-none" style="height:30px">
+        &nbsp;
+      </div>
+      <div *ngSwitchCase="false" class="d-none d-sm-block" style="height:8px">
+        &nbsp;
+      </div>
+    </div>
+-->
+    <div class="hg-sidebar-1 hg-sidebar" *ngIf="ui.showLeft">
+      <div class="hgSideBarItemsSticky">
+        <div>Alpha</div>
+
+        <div>
+          <a class="nav-link" [routerLink]="['/view2']">View 2<span class="sr-only"></span></a>
+        </div>
+
+        <div>
+          <button (click)="implementMe('1.1.1')">
+            <!-- hidden on xs-->
+            <span class="d-none d-sm-block">Action 1.1.1</span>
+            <!-- show on xs-->
+            <span class="d-sm-none">A 1.1.1 </span>
+          </button>
+        </div>
+
+        <div>
+          <button (click)="implementMe('1.1.2')">
+            <!-- hidden on xs-->
+            <span class="d-none d-sm-block">Action 1.1.2</span>
+            <!-- show on xs-->
+            <span class="d-sm-none">A 1.1.2 </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="hg-sidebar-2 hg-sidebar" *ngIf="ui.showRight">
+      <div class="hgSideBarItemsSticky">
+        <div>Beta</div>
+
+        <div>
+          <a class="nav-link" [routerLink]="['/view2']">View 2<span class="sr-only"></span></a>
+        </div>
+
+        <div>
+          <button (click)="implementMe('1.2.1')">
+            <!-- hidden on xs-->
+            <span class="d-none d-sm-block">Action 1.2.1</span>
+            <!-- show on xs-->
+            <span class="d-sm-none">A 1.2.1 </span>
+          </button>
+        </div>
+
+        <div>
+          <button (click)="implementMe('1.2.2')">
+            <!-- hidden on xs-->
+            <span class="d-none d-sm-block">Action 1.2.2</span>
+            <!-- show on xs-->
+            <span class="d-sm-none">A 1.2.2 </span>
+          </button>
+        </div>
+
+
+        <div>
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownE" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Action E
+              </a>
+              <div id="qwerty" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownE">
+                <a class="dropdown-item" href="#" (click)="implementMe('Action E.1')">Action E.1</a>
+                <a class="dropdown-item" href="#" (click)="implementMe('Action E.2')">Action E.2</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" (click)="implementMe('Action E.3')">Action E.3</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="hg-component-hf hg-component-footer" *ngIf="ui.showCF" [ngStyle]="{ bottom: !app.footer ? 0 : null }">
+    <!-- remove the above ngStyle if app footer is always present -->
+    <div class="hg-component-hf-details">
+      <div class="hg-component-hf-items-left">
+        <div>
+          view1 footer:
+        </div>
+      </div>
+      <!-- obviously replace these with nicer presentation ul/li navbar etc -->
+      <div class="hg-component-hf-items-right">
+        <!-- obviously replace these with nicer presentation ul/li navbar etc -->
+        <!-- using order to display backwards -->
+        <div style="order:4">
+          <a class="nav-link" [routerLink]="['/view2']">View 2<span class="sr-only"></span></a>
+        </div>
+        <div style="order:3">
+          <button (click)="implementMe('View1Action1')">
+            <!-- hidden on xs-->
+            <span class="d-none d-sm-block">View1Action1</span>
+            <!-- show on xs-->
+            <span class="d-sm-none">V1A1</span>
+          </button>
+        </div>
+        <div style="order:2">
+          <button (click)="implementMe('View1Action2')">
+            <!-- hidden on xs-->
+            <span class="d-none d-sm-block">View1Action2</span>
+            <!-- show on xs-->
+            <span class="d-sm-none">V1A2</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

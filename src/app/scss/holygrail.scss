@@ -1,0 +1,686 @@
+/* unless overruled by a media breakpoint, the global settings are xs by default */
+
+/* in styles.css
+// @import '../node_modules/bootstrap/scss/bootstrap-reboot';
+// @import '../node_modules/bootstrap/scss/bootstrap-grid';
+// @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+*/
+
+/* obviously think about your colour schmeme / theme and contrasts for active, hover, disabled etc.
+*/ 
+$hg-app-hf-height: 40px; /* or .navbar */
+$hg-app-container-bkColor: red;
+$hg-app-hf-bkColor: red; // rgb(245, 216, 51);
+$hg-component-hf-bkColor: lightgreen;
+$hg-component-body-bkColor: rgb(139, 187, 233);
+$hg-component-body-color: black;
+$hg-sidebar-bkColor: rgb(238, 241, 19);
+$hg-sidebar-color: black; 
+$hg-sidebar-items-bkColor: magenta;
+$hg-hf-border-radius: 12px;
+
+$hg-navbar-collapsed-show-bkColor: white;
+
+/* temps ? */
+
+$hg-app-hf-left-bkColor: rgb(235, 218, 122);
+$hg-app-hf-right-bkColor: rgb(206, 190, 98);
+$hg-component-body-right-bkColor: rgb(139, 187, 233);
+$hg-component-hf-items-right-bkColor: rgb(175, 245, 161);
+
+
+html {
+  overflow-y: scroll;
+}
+
+.navbar {
+  padding: 0.1rem 1rem;
+  width: 100%;
+  background-color: $hg-app-hf-bkColor;
+  border-radius: $hg-hf-border-radius;
+  /*
+  height: $hg-app-hf-height;
+  max-height: $hg-app-hf-height;
+  */
+}
+
+.navbar-brand {
+
+   padding-top: 0;
+   padding-bottom: 0;
+
+  /*font-size: 1.25rem; */
+
+}
+
+ul .navbar {
+  background-color: red;
+}
+
+.navbar button {
+  /* => .btn-sm */
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+}
+
+.navbar div.dropdown-menu.showing {
+  min-width: 0;
+}
+
+
+
+.navbar-collapse > ul {
+  margin-left: 1vw;
+}
+
+.navbar-collapse.show { 
+  /* on smaller devices do you want to show a different background colour when menu displayed
+ however some render flicker for colour change may be better to leave in original colour style of larger device  */
+  background-color: $hg-navbar-collapsed-show-bkColor; 
+}
+
+/*
+an attempt to see if the render flicker could be minimised
+.navbar-collapse.show > li {   
+  background-color: $hg-navbar-collapsed-show-bkColor; 
+}
+*/
+ li.nav-item:hover    {
+  background-color: #d0deec;
+  color: white;
+  border-radius: 8px;
+}
+
+li.nav-item:hover  > a.active   {
+  background-color: #e4f1b5; 
+}
+
+
+li.nav-item:hover  a  {
+  color: white;
+}
+
+li.nav-item > a.active   {
+  background-color: rgb(161, 240, 161);
+  color: white;
+  border-radius: 8px;
+}
+
+li.nav-item > a.active:hover   {
+  color: black;
+}
+
+button {
+  border-radius: 8px;
+}
+
+button:hover {
+  background-color: whitesmoke;
+  color: black;
+}
+
+.hgSideBarItemsSticky button.disabled {
+  background-color: grey;
+  color: black;
+}
+
+.appBrandName {
+  margin-right: 30px;
+}
+
+.hg-logo {
+  height: $hg-app-hf-height;
+  border-radius: 8px;
+}
+
+.hg-app-hf {
+  /* shared header and footer */
+  flex: 0; /* flex to hold content */
+  flex-shrink: 0; /* do not shrink */
+  z-index: 5; /*  ensure dropdown appears over component header etc */
+  /*  position: fixed; /* top / bottom set by hg-app-(header | footer) */
+  position: sticky;
+  width: 100%;
+  /* font-size: 14px; */
+  background-color: $hg-app-hf-bkColor;
+  border-radius: $hg-hf-border-radius;
+  height: $hg-app-hf-height;
+  max-height: $hg-app-hf-height;
+}
+
+/* ensure dropdown defaults to parent colour within hg-app-hf  */
+.hg-app-hf    .dropdown-menu.show.showing {
+  background-color: $hg-app-hf-bkColor;
+}
+
+
+.hg-app-header {
+  top: 0;
+}
+
+.hg-app-footer {
+  bottom: 0;
+}
+
+.hg-app-hf-details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.hg-app-hf-details a,
+.hg-app-hf-details button {
+  margin-left: 8px;
+}
+
+.hg-app-hf-detail-left {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 5px;
+  background-color: $hg-app-hf-left-bkColor; /* remove later, demo visual only */
+}
+
+.hg-app-hf-detail-right {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  padding-right: 5px;
+  background-color: $hg-app-hf-right-bkColor; /* remove later, demo visual only */
+  border-radius: $hg-hf-border-radius; /* needed if background-color set here */
+}
+
+.hg-app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.hg-app-container-body {
+  display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  background: #fff;
+
+  flex: 1 1 auto;
+  flex-direction: column;
+  height: auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.hg-component-wrapper {
+  display: flex;
+  flex: 1 1 auto;
+  background-color: white;
+}
+
+.hg-component-container {
+  display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+
+.hg-component-hf {
+  /* header / footer shared */
+  z-index: 4; /* ensure navbar dropdown on top, over lesser elements */
+  background-color: $hg-component-hf-bkColor;
+  border-radius: $hg-hf-border-radius;
+  padding-left: 5px;
+  position: -webkit-sticky;
+  position: sticky; /* prevent scolling out of view */
+  height: $hg-app-hf-height;
+  max-height: $hg-app-hf-height;
+}
+
+/* ensure dropdown defaults to parent colour within hg-component-hf */
+.hg-component-hf    .dropdown-menu.show.showing {
+  background-color: $hg-component-hf-bkColor;
+}
+
+.hg-component-header {
+  top: $hg-app-hf-height; /* height of the app-header above the component header, need to keep on the view */
+}
+
+.hg-component-footer {
+  /*  bottom: calc(#{$hg-app-hf-height} - 4px); /* height of the app-footer below the component footer, need to keep on the view */
+  bottom: $hg-app-hf-height; /* height of the app-footer below the component footer, need to keep on the view */
+}
+
+.hg-component-hf-details {
+  display: flex;
+  align-items: center;
+}
+
+.hg-component-hf-items-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 0 0 auto;
+  margin-right: 10px;
+}
+
+.hg-component-hf-items-right {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  flex: 0 0 auto;
+  background-color: $hg-component-hf-items-right-bkColor;
+  border-radius: $hg-hf-border-radius; /* needed if background-color set here */
+  margin-left: 2px;
+}
+
+.hg-component-body,
+.hgCB {
+  /* hg-component-body not working inheritance ?  hgCB in class property instead*/
+  color: $hg-component-body-color;
+  background: $hg-component-body-bkColor;
+  /*  margin-top: 28px; /* required if component header fixed to stickied to bottom of this body */
+  /*   margin-bottom: 26px; /* required if component footer fixed to stickied to bottom of this body */
+}
+
+/**
+ * Content body item is made
+ * extensible too.
+ */
+.hg-content {
+  flex: 1 1 auto;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.hg-sidebar {
+  align-self: stretch; /* flex related */
+  background-color: $hg-sidebar-bkColor;
+  color: $hg-sidebar-color;
+  padding-left: 8px; /* indent away from the sidebar, needed if background-color set */
+  border-radius: 12px; /* remove to prevent parent color near top left/right appearing */
+  text-align: center!important;
+}
+
+.hg-sidebar button {
+ /*  background-color: #80c1cb; */ /* enable if not using app specific classes/style */
+  border-color: #80c1cb;
+  color: black;
+}
+
+.hg-sidebar button:disabled  {
+  background-color: grey;
+  color: grey;
+}
+
+.hg-sidebar button .btn.btn-primary.disabled {
+  background-color: grey;
+  color: black;
+}
+
+.hgSideBarItemsSticky {
+  z-index: 3; /* need to ensure drop down appears over footers in worst case display presentation */
+  background-color: $hg-sidebar-items-bkColor;
+  padding-bottom: 5px;
+  padding-top: 5px; /* needs to take in to account if component header displayed */
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hgSideBarItemsStickyDropDown.showing {
+  background-color: $hg-sidebar-items-bkColor;
+}
+
+/* ensure dropdown defaults to parent colour within  hgSideBarItemsSticky*/
+.hgSideBarItemsSticky   .dropdown-menu.show.showing {
+    background-color: $hg-sidebar-items-bkColor;
+}
+
+/*
+.hgSideBarItems > div { /* assume a div wraps all the children * /
+
+}
+*/
+
+@media (max-width: 767px) {
+  /* ******************************************************************************************************************* */
+  /* xs  smart phones etc. */
+
+  /**
+ * Let's do a column distribution
+ * (mobile first)
+ * flex value is 1 1 auto to make
+ * body skrinkable and extensible
+ */
+
+  .hg-app-hf-details {
+    padding-left: 5px;
+  }
+
+  .hg-component-header {
+    width: 100%;
+  }
+
+  .hg-component-body,
+  .hgCB {
+    display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    background: $hg-component-body-bkColor;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-left: 0em;
+    padding-right: 0em;
+    /*  margin-top: 24px; /* required if component footer fixed to stickied to bottom of this body*/
+    /*  margin-bottom: 24px; /* required if component footer fixed to stickied to bottom of this body*/
+  }
+
+  /**
+ * Put the sidebars before content on xs. (in this UI)
+ * If you need sidebar to be before content
+ * only in big screen put those 3 next lines
+ * in @media block.
+ */
+  .hg-sidebar-1 {
+    order: 1;
+    flex: 0;
+  }
+  .hg-sidebar-2 {
+    order: 2;
+    flex: 0;
+  }
+  .hg-content {
+    order: 3;
+  }
+
+  .hg-sidebar {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    /*  z-index: 1;*/
+    width: 100%;
+    padding-inline-start: 0px;
+  }
+
+  .hgSideBarItemsSticky {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .hg-sidebar div {
+    margin-left: 4px; /* horizontal placement - typcially */
+  }
+
+  .hg-sidebar-1 {
+    order: 1;
+  }
+} /* xs */
+
+/**
+ * Let's introduce bigger screen
+ */
+
+@media (min-width: 768px) {
+  /* ******************************************************************************************************************/
+  /* not xs */
+  /**
+	 * Body items are now side by side
+   */
+
+  .navbar {
+    height: $hg-app-hf-height;
+    max-height: $hg-app-hf-height;
+  }
+
+  .hg-app-hf-details {
+    padding-left: 20px;
+ 
+  }
+
+  .hg-app-container-body {
+    /* may need to give various break point settngs here */
+    /*  padding-left: 0; covered by xs defaults
+    padding-right: 0; */
+  }
+
+  .hg-component-container {
+    display: flex;
+    flex-direction: column;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    flex: 1 1 auto;
+    padding-left: 3em;
+    padding-right: 3em;
+    /*  padding-top: 10px; /* allow for the fixed header position */
+  }
+
+  .hg-component-header {
+    /*  display: flex; */
+    flex-direction: row;
+    top: $hg-app-hf-height; /* height of the app-header above the component header, need to keep on the view */
+  }
+
+  .hg-component-hf {
+    /* header / footer shared */
+    padding-left: 12px;
+    height: $hg-app-hf-height;
+    max-height: $hg-app-hf-height;
+  }
+
+  .hg-viewName {
+    color: black;
+    font-weight: 900;
+    font-size: 1.5em;
+  }
+
+  .hg-component-hf-details {
+    flex: 1;
+  }
+
+  .hg-component-hf-items-left {
+    margin-right: 2px;
+  }
+
+  .hg-component-hf-items-right {
+    margin-left: 10px;
+    flex: 1 1 auto;
+  }
+
+  .hg-component-hf button {
+    margin-left: 8px;
+    align-items: center;
+  }
+
+  .hg-component-body, .hgCB /* hg-component-body not working inheritance ?  hgCB in class property instead*/
+ {
+    display: flex;
+    flex-direction: row; /* i.e. two side menus, one on left, one on the right */
+    /*  margin-top: 28px; /* required if component header fixed to stickied to bottom of this body * /
+    margin-bottom: 0; */
+    /* set  earlier   margin-bottom: 26px; /* required if component footer fixed to stickied to bottom of this body*/
+    /* min-height experiment with px to prevent view flicker when no scoll, depends on space used by app-header and app-footer
+   app-header height, compenent-header height, component body padding and footer height all contribute to consuming
+   the main contents body area.
+
+   Visual adusting with trial and error was used to set the - ??px value below
+
+   */
+      min-height: 100vh;
+
+    /* nb this ??px value may be view specific to header/footer setup etc */
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    align-items: flex-start;
+    flex: 1 1 auto;
+    padding-left: 0;
+    padding-right: 0;
+    /*  padding-top: 10px; /* allow for the fixed header position */
+  }
+
+  .hg-sidebar button {
+    margin-top: 8px; /* vertical placement - typcially at this breakpoint*/
+    width: 90%;
+  }
+
+  .hg-sidebar  button.btn:hover {
+    background-color: #0ff!important;
+    color: black;
+}
+
+  .hg-sidebar div {
+    flex: 1;
+  }
+
+  /* decide the relative width of the 3 columns hg-sidebar-1 + hg-content + hg-sidebar-2
+using the flex property to apportion weights*/
+  .hg-sidebar-1 {
+    order: 1; /* left */
+    flex: 2; /* 2/16 of total flex */
+  }
+
+  .hg-content {
+    order: 2; /* middle */
+    flex: 16; /* 12/16 of total flex */
+  }
+
+  .hg-sidebar-2 {
+    order: 3; /* right */
+    flex: 2; /* 2/16 of total flex */
+  }
+
+  .hgSideBarItemsSticky {
+    display: flex;
+    flex-direction: column;
+    z-index: 1; /* ensure dropdowns stay on top */
+    position: -webkit-sticky;
+    position: sticky; /* prevent scolling out of view */
+
+    top: calc(
+      calc(#{$hg-app-hf-height} * 2) + 5px
+    ); /* <-- visual trial and error to find to prevent scoll flicker*/
+  }
+
+  /* component specific */
+} /* not xs */
+
+@media (min-width: 1024px) {
+  /* *********************************************************************************************************** */
+
+  .hg-app-container-body {
+    /* may need to give various break point settngs here */
+    /*  padding-left: 0; covered by xs defaults
+    padding-right: 0; */
+  }
+
+  .hg-component-hf {
+    /* header / footer shared */
+    padding-left: 50px;
+  }
+
+  .hg-component-hf-details {
+    padding-left: 30px;
+  }
+} /* min-width: 1024px */
+
+@media (min-width: 1440px) {
+  .hg-app-container-body {
+    /* may need to give various break point settngs here */
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .hg-app-hf {
+    width: 92%;
+    left: 4%;
+    right: 4%;
+    font-size: 16px;
+  }
+} /* min-width: 1440px */
+
+@media (min-width: 2560px) {
+  .appBrandName {
+    margin-right: 130px;
+  }
+
+  .hg-app-container-body {
+    /* may need to give various break point settngs here */
+    padding-left: 20%;
+    padding-right: 20%;
+  }
+
+  .hg-app-hf {
+    width: 70%;
+    left: 15%;
+    right: 15%;
+    font-size: 18px;
+  }
+} /* min-width: 2560px */
+
+
+
+.flex { display: flex; flex-wrap: wrap; }
+
+.flexMin {
+  flex: 0 1 auto;
+}
+
+.flexMax {
+  flex: 1 1 auto;
+}
+
+.flex1 { flex:1; }
+.flex2 { flex:2; }
+.flex3 { flex:3; }
+.flex4 { flex:4; }
+.flex5 { flex:5; }
+.flex6 { flex:6; }
+
+.flexRow {
+  display: flex;
+  flex-direction: row-row;
+  align-items: center;
+}
+
+.flexRowReverse {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.hg-component-hf-items-right div {
+  margin-right: 5px;
+}
+
+.flexPlacebo,
+.flexPlaceXS {
+  flex: 0;
+}
+
+.flexOrder {
+  order: 0;
+}
+
+.flexContainer {
+  display: flex;
+}
+
+.hg-sidebar-2-right-align {
+  align-items: flex-end;
+  padding-right: 6px;
+}
+
+

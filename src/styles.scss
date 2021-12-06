@@ -1,0 +1,12 @@
+/* unless overruled by a media breakpoint, the global settings are xs by default */
+
+@import '../node_modules/bootstrap/scss/bootstrap-reboot';
+@import '../node_modules/bootstrap/scss/bootstrap-grid';
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+@import './app/scss/holygrail.scss';
+/* set in holygrail
+html {
+  overflow-y: scroll;
+}
+*/

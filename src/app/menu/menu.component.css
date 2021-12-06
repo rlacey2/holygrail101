@@ -1,0 +1,38 @@
+ 
+ /* setting these does not handle disabled correctly */
+ /*
+ .active>.nav-link, 
+  .nav-link.active, 
+  .nav-link.show, 
+ .show>.nav-link {
+    color: #d39e00;
+	background-color : yellow;
+}
+
+ .navbar-nav .nav-link {
+    color: #007bff;
+}
+
+ .navbar-nav   .nav-link:hover, 
+  {
+    color: #d39e00;
+	background-color : red;
+}
+
+ 
+.navbar-light .navbar-nav .nav-link.disabled {
+    color: rgba(0,0,0,.3);
+}
+
+ 
+.navbar-light .navbar-nav .nav-link:not(.active):hover {
+    color: red;
+}
+
+
+.navbar-light .navbar-nav .nav-link.disabled {
+    color: red);
+}
+*/
+
+
